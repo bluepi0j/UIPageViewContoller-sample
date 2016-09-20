@@ -12,7 +12,7 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
     
     var currentIndex: Int = 0
     
-    var pageVC: UIPageViewController!
+    var pageVC: PageContentViewController!
     //http://stackoverflow.com/questions/36029187/nil-check-inside-getter-method-in-swift
     //http://stackoverflow.com/questions/24177908/swift-is-correct-to-use-stored-properties-as-computed-properties
     lazy var firstVC: FirstViewController? =  {
@@ -30,7 +30,7 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pageVC = self.storyboard!.instantiateViewController(withIdentifier: "pageVC") as! UIPageViewController
+        self.pageVC = self.storyboard!.instantiateViewController(withIdentifier: "pageVC") as! PageContentViewController
         self.pageVC.delegate = self
         self.pageVC.dataSource = self
         
@@ -54,8 +54,12 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         var vc: UIViewController?
         if viewController === self.firstVC {
             vc = self.secVC
+            self.currentIndex = 1
+            self.pageVC.currentIndex = 1
         } else if viewController === self.secVC {
             vc = self.thirdVC
+            self.currentIndex = 2
+            self.pageVC.currentIndex = 2
         }
         return vc
     }
@@ -64,8 +68,12 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         var vc: UIViewController?
         if viewController === self.secVC {
             vc = self.firstVC
+            self.currentIndex = 0
+            self.pageVC.currentIndex = 0
         } else if viewController === self.thirdVC {
             vc = self.secVC
+            self.currentIndex = 1
+            self.pageVC.currentIndex = 1
         }
         return vc
 
@@ -89,7 +97,7 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         } else {
             self.pageVC.setViewControllers([self.thirdVC!], direction: direction, animated: anamited, completion: nil)
         }
-        
+        self.pageVC.currentIndex = index;
         self.currentIndex = index;
     }
     /*
