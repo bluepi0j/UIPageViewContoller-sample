@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+    var currentIndex: Int = 0
+    
     var pageVC: UIPageViewController!
     //http://stackoverflow.com/questions/36029187/nil-check-inside-getter-method-in-swift
     //http://stackoverflow.com/questions/24177908/swift-is-correct-to-use-stored-properties-as-computed-properties
@@ -21,6 +23,9 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
                 return self.storyboard!.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController
     }()
     
+    lazy var thirdVC: ThirdViewController? = {
+        return self.storyboard!.instantiateViewController(withIdentifier: "ThirdViewController") as? ThirdViewController
+    }()
     
     
     override func viewDidLoad() {
@@ -31,8 +36,8 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         
         
         //set first page
-        
-        self.pageVC.setViewControllers([self.firstVC!], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
+        self.nevigateToPage(To: 1, animated: true)
+//        self.pageVC.setViewControllers([self.secVC!], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
         self.pageVC.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.addChildViewController(self.pageVC)
         self.view.insertSubview(self.pageVC.view, at: 0)
@@ -49,6 +54,8 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         var vc: UIViewController?
         if viewController === self.firstVC {
             vc = self.secVC
+        } else if viewController === self.secVC {
+            vc = self.thirdVC
         }
         return vc
     }
@@ -57,15 +64,34 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         var vc: UIViewController?
         if viewController === self.secVC {
             vc = self.firstVC
+        } else if viewController === self.thirdVC {
+            vc = self.secVC
         }
         return vc
 
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        
+            
     }
     
+    func nevigateToPage(To index:Int, animated anamited: Bool) {
+        
+        let direction = (index > currentIndex) ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse;
+
+        // first page
+        if index == 0 {
+            self.pageVC.setViewControllers([self.firstVC!], direction: direction, animated: anamited, completion: nil)
+        //second page
+        } else if index == 1 {
+            self.pageVC.setViewControllers([self.secVC!], direction: direction, animated: anamited, completion: nil)
+        // third page
+        } else {
+            self.pageVC.setViewControllers([self.thirdVC!], direction: direction, animated: anamited, completion: nil)
+        }
+        
+        self.currentIndex = index;
+    }
     /*
     // MARK: - Navigation
 
