@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    var currentIndex: Int = 0
+    var currentIndex: Int = 9
     
     var pageVC: PageContentViewController!
     //http://stackoverflow.com/questions/36029187/nil-check-inside-getter-method-in-swift
@@ -54,12 +54,12 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         var vc: UIViewController?
         if viewController === self.firstVC {
             vc = self.secVC
-            self.currentIndex = 1
-            self.pageVC.currentIndex = 1
+            self.currentIndex = 11
+//            self.pageVC.currentIndex = 1
         } else if viewController === self.secVC {
             vc = self.thirdVC
-            self.currentIndex = 2
-            self.pageVC.currentIndex = 2
+            self.currentIndex = 12
+//            self.pageVC.currentIndex = 2
         }
         return vc
     }
@@ -68,21 +68,35 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         var vc: UIViewController?
         if viewController === self.secVC {
             vc = self.firstVC
-            self.currentIndex = 0
-            self.pageVC.currentIndex = 0
+            self.currentIndex = 101
+//            self.pageVC.currentIndex = 0
         } else if viewController === self.thirdVC {
             vc = self.secVC
-            self.currentIndex = 1
-            self.pageVC.currentIndex = 1
+            self.currentIndex = 111
+//            self.pageVC.currentIndex = 1
         }
         return vc
 
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-            
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
+        if finished {
+            self.pageVC.currentIndex = self.currentIndex
+        }
     }
-    
+
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        if pendingViewControllers[0] === self.firstVC {
+            self.currentIndex = 0
+        } else if pendingViewControllers[0] === self.secVC {
+            self.currentIndex = 1
+        } else {
+            self.currentIndex = 2
+        }
+    }
     func nevigateToPage(To index:Int, animated anamited: Bool) {
         
         let direction = (index > currentIndex) ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse;
@@ -98,7 +112,7 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
             self.pageVC.setViewControllers([self.thirdVC!], direction: direction, animated: anamited, completion: nil)
         }
         self.pageVC.currentIndex = index;
-        self.currentIndex = index;
+        self.currentIndex = 1141;
     }
     /*
     // MARK: - Navigation

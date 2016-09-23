@@ -30,22 +30,30 @@ class PageContentViewController: UIPageViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
+        print("offset is " + String(describing: scrollView.contentOffset.x))
         print(scrollView.bounds.size.width)
-        if self.currentIndex == 0 && scrollView.contentOffset.y < scrollView.bounds.size.width {
+        if self.currentIndex == 0 && scrollView.contentOffset.x < scrollView.bounds.size.width {
             scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
         } else if self.currentIndex == 2 && scrollView.contentOffset.x > scrollView.bounds.size.width {
-//            scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
+            scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
         }
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
             if self.currentIndex == 0 && scrollView.contentOffset.x < scrollView.bounds.size.width {
                 scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
             } else if currentIndex == 2 && scrollView.contentOffset.x > scrollView.bounds.size.width {
-//                scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
+                scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
             }
     }
+//
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//            if self.currentIndex == 0 && scrollView.contentOffset.x < scrollView.bounds.size.width {
+//                scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
+//            } else if currentIndex == 2 && scrollView.contentOffset.x > scrollView.bounds.size.width {
+////                scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width, y: 0)
+//            }
+//    }
     
 //    func scrollViewDidScroll(scrollView: UIScrollView) {
 //        if currentIndex == 0 && scrollView.contentOffset.x < scrollView.bounds.size.width {
