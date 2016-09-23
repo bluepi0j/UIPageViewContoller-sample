@@ -54,11 +54,11 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         var vc: UIViewController?
         if viewController === self.firstVC {
             vc = self.secVC
-            self.currentIndex = 11
+//            self.currentIndex = 11
 //            self.pageVC.currentIndex = 1
         } else if viewController === self.secVC {
             vc = self.thirdVC
-            self.currentIndex = 12
+//            self.currentIndex = 12
 //            self.pageVC.currentIndex = 2
         }
         return vc
@@ -68,11 +68,11 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         var vc: UIViewController?
         if viewController === self.secVC {
             vc = self.firstVC
-            self.currentIndex = 101
+//            self.currentIndex = 101
 //            self.pageVC.currentIndex = 0
         } else if viewController === self.thirdVC {
             vc = self.secVC
-            self.currentIndex = 111
+//            self.currentIndex = 111
 //            self.pageVC.currentIndex = 1
         }
         return vc
@@ -112,7 +112,7 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
             self.pageVC.setViewControllers([self.thirdVC!], direction: direction, animated: anamited, completion: nil)
         }
         self.pageVC.currentIndex = index;
-        self.currentIndex = 1141;
+//        self.currentIndex = inde;
     }
     /*
     // MARK: - Navigation
