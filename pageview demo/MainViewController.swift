@@ -34,6 +34,9 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         self.pageVC.delegate = self
         self.pageVC.dataSource = self
         
+        self.firstVC?.view.tag = 0
+        self.secVC?.view.tag = 1
+        self.thirdVC?.view.tag = 2
         
         //set first page
         self.nevigateToPage(To: 1, animated: true)
@@ -83,12 +86,19 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
                             didFinishAnimating finished: Bool,
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool) {
-        if finished {
-            self.pageVC.currentIndex = self.currentIndex
-        }
+//        if finished {
+//            self.pageVC.currentIndex = self.currentIndex
+//        }
+        print("tag is \(pageViewController.viewControllers!.first!.view.tag) ")
+//        if finished {
+        self.pageVC.currentIndex = pageViewController.viewControllers!.first!.view.tag
+        self.pageVC.view.isUserInteractionEnabled = true
+//        self.pageVC.completed = true
+//        }
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+
         if pendingViewControllers[0] === self.firstVC {
             self.currentIndex = 0
         } else if pendingViewControllers[0] === self.secVC {
@@ -96,20 +106,47 @@ class MainViewController: UIViewController, UIPageViewControllerDelegate, UIPage
         } else {
             self.currentIndex = 2
         }
+        self.pageVC.view.isUserInteractionEnabled = false
+//        self.pageVC.completed = false
+
     }
+    
     func nevigateToPage(To index:Int, animated anamited: Bool) {
         
         let direction = (index > currentIndex) ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse;
 
         // first page
         if index == 0 {
-            self.pageVC.setViewControllers([self.firstVC!], direction: direction, animated: anamited, completion: nil)
+//            self.pageVC.setViewControllers([self.firstVC!], direction: direction, animated: anamited, completion: { (finished) in
+//                print("finish")
+//            })
+            self.pageVC.setViewControllers([self.firstVC!], direction: direction, animated: true, completion:{ (finished) in
+                print(finished)
+                if finished {
+                    print("finish1")
+                }
+            })
+
         //second page
         } else if index == 1 {
-            self.pageVC.setViewControllers([self.secVC!], direction: direction, animated: anamited, completion: nil)
+            self.pageVC.setViewControllers([self.secVC!], direction: direction, animated: anamited, completion: { (finished) in
+                print(finished)
+
+                if finished {
+                    print("finish2")
+                }
+            })
+
         // third page
         } else {
-            self.pageVC.setViewControllers([self.thirdVC!], direction: direction, animated: anamited, completion: nil)
+            self.pageVC.setViewControllers([self.thirdVC!], direction: direction, animated: anamited, completion: { (finished) in
+                print(finished)
+
+                if finished {
+                    print("finish3")
+                }
+            })
+
         }
         self.pageVC.currentIndex = index;
 //        self.currentIndex = inde;

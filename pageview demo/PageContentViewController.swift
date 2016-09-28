@@ -11,6 +11,7 @@ import UIKit
 class PageContentViewController: UIPageViewController, UIScrollViewDelegate {
     
     var currentIndex: Int = 0
+//    var completed: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

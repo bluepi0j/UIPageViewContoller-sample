@@ -19,6 +19,7 @@
 		1CD600FB1D90C09800B1D015 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD600FA1D90C09800B1D015 /* FirstViewController.swift */; };
 		1CD600FD1D90C0B800B1D015 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD600FC1D90C0B800B1D015 /* SecondViewController.swift */; };
 		8C23F2BD1D91819F000193D5 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C23F2BC1D91819F000193D5 /* ThirdViewController.swift */; };
+		8C3B8EB91D99BCE200BF01B9 /* BPPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3B8EB81D99BCE200BF01B9 /* BPPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		1CD600FA1D90C09800B1D015 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		1CD600FC1D90C0B800B1D015 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		8C23F2BC1D91819F000193D5 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		8C3B8EB81D99BCE200BF01B9 /* BPPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPPageViewController.swift; path = BPPageViewController/BPPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,14 +109,15 @@
 		1C48976E1D90B9E80013EF57 /* pageview demo */ = {
 			isa = PBXGroup;
 			children = (
+				8C3B8EB71D99BC6C00BF01B9 /* BPPageViewController */,
 				1C48976F1D90B9E80013EF57 /* AppDelegate.swift */,
 				1C4897711D90B9E80013EF57 /* ViewController.swift */,
 				1C48979D1D90BA8C0013EF57 /* PageContentViewController.swift */,
 				1CD600F81D90BE9E00B1D015 /* MainViewController.swift */,
 				8C23F2BC1D91819F000193D5 /* ThirdViewController.swift */,
 				1CD600FA1D90C09800B1D015 /* FirstViewController.swift */,
-				1C4897731D90B9E80013EF57 /* Main.storyboard */,
 				1CD600FC1D90C0B800B1D015 /* SecondViewController.swift */,
+				1C4897731D90B9E80013EF57 /* Main.storyboard */,
 				1C4897761D90B9E80013EF57 /* Assets.xcassets */,
 				1C4897781D90B9E80013EF57 /* LaunchScreen.storyboard */,
 				1C48977B1D90B9E80013EF57 /* Info.plist */,
@@ -138,6 +141,14 @@
 				1C4897911D90B9E80013EF57 /* Info.plist */,
 			);
 			path = "pageview demoUITests";
+			sourceTree = "<group>";
+		};
+		8C3B8EB71D99BC6C00BF01B9 /* BPPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8C3B8EB81D99BCE200BF01B9 /* BPPageViewController.swift */,
+			);
+			name = BPPageViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +219,7 @@
 				TargetAttributes = {
 					1C48976B1D90B9E80013EF57 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 32U94E3J5B;
+						DevelopmentTeam = 6D37XL8FCU;
 						ProvisioningStyle = Automatic;
 					};
 					1C48977F1D90B9E80013EF57 = {
@@ -280,6 +291,7 @@
 				1CD600FD1D90C0B800B1D015 /* SecondViewController.swift in Sources */,
 				1CD600FB1D90C09800B1D015 /* FirstViewController.swift in Sources */,
 				1C48979E1D90BA8C0013EF57 /* PageContentViewController.swift in Sources */,
+				8C3B8EB91D99BCE200BF01B9 /* BPPageViewController.swift in Sources */,
 				8C23F2BD1D91819F000193D5 /* ThirdViewController.swift in Sources */,
 				1C4897721D90B9E80013EF57 /* ViewController.swift in Sources */,
 				1C4897701D90B9E80013EF57 /* AppDelegate.swift in Sources */,
@@ -435,11 +447,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 32U94E3J5B;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6D37XL8FCU;
 				INFOPLIST_FILE = "pageview demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "bluepi0j.pageview-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -448,11 +463,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 32U94E3J5B;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6D37XL8FCU;
 				INFOPLIST_FILE = "pageview demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "bluepi0j.pageview-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
