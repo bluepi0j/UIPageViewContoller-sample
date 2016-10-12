@@ -219,7 +219,7 @@
 				TargetAttributes = {
 					1C48976B1D90B9E80013EF57 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 6D37XL8FCU;
+						DevelopmentTeam = 32U94E3J5B;
 						ProvisioningStyle = Automatic;
 					};
 					1C48977F1D90B9E80013EF57 = {
@@ -448,7 +448,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6D37XL8FCU;
+				DEVELOPMENT_TEAM = 32U94E3J5B;
 				INFOPLIST_FILE = "pageview demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "bluepi0j.pageview-demo";
@@ -464,7 +464,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6D37XL8FCU;
+				DEVELOPMENT_TEAM = 32U94E3J5B;
 				INFOPLIST_FILE = "pageview demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "bluepi0j.pageview-demo";
