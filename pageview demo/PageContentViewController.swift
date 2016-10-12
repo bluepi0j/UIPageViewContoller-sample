@@ -24,6 +24,14 @@ class PageContentViewController: UIPageViewController, UIScrollViewDelegate {
         // Do any additional setup after loading the view.
     }
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        print("test")
+    }
+    
+    required override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
+        super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

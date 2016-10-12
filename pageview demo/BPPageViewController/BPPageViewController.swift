@@ -20,13 +20,16 @@ public class BPPageViewController: UIPageViewController {
     
     /// All the ViewController in the page view
     lazy var pages = [UIViewController]()
+    
+    /// current page index
+    public fileprivate(set) var currentPageIndex: Int?
+    
 }
 
 // MARK: - Public function
 extension BPPageViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -34,6 +37,10 @@ extension BPPageViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    public convenience init(allViewControllers viewControllers: [UIViewController], transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
+////        super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
+//    }
 }
 
 // MARK: - UIPageViewControllerDataSource
@@ -56,4 +63,15 @@ extension BPPageViewController: UIPageViewControllerDelegate {
     
 }
 
+extension BPPageViewController {
+    private func viewControllerAt(_ index: Int) -> UIViewController {
+        return self.pages[index];
+    }
+    
+    private func nevigateToPage(_ index: Int, animated: Bool) {
+        let direction: UIPageViewControllerNavigationDirection = (index > self.currentPageIndex!) ? .forward : .reverse
 
+        self .setViewControllers([self.pages[index]], direction: direction, animated: animated, completion: nil)
+        self.currentPageIndex = index
+    }
+}
