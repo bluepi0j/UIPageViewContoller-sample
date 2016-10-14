@@ -22,7 +22,7 @@ public class BPPageViewController: UIPageViewController {
     lazy var pages = [UIViewController]()
     
     /// current page index
-    public fileprivate(set) var currentPageIndex: Int?
+    public fileprivate(set) var currentPageIndex: Int = 0
     
 }
 
@@ -30,6 +30,8 @@ public class BPPageViewController: UIPageViewController {
 extension BPPageViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
+        self.dataSource = self
         // Do any additional setup after loading the view.
         self.navigateToPage(startPage, animated: false)
 
@@ -48,22 +50,32 @@ extension BPPageViewController {
 // MARK: - UIPageViewControllerDataSource
 extension BPPageViewController: UIPageViewControllerDataSource {
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return self.pages[0]
+        let index = self.pages.index(of: viewController)
+        assert(index != nil)
+        if index! + 1 < self.pages.count {
+            return self.pages[index! + 1]
+        }
+        return nil
     }
     
     public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return self.pages[0]
+        let index = self.pages.index(of: viewController)
+        assert(index != nil)
+        if index! - 1 >= 0 {
+            return self.pages[index! - 1]
+        }
+        return nil
     }
     
     public func prevPage() {
-        if self.currentPageIndex! > 0 {
-            self.navigateToPage(self.currentPageIndex! - 1 , animated: true)
+        if self.currentPageIndex > 0 {
+            self.navigateToPage(self.currentPageIndex - 1 , animated: true)
         }
     }
     
     public func nextPage() {
-        if self.currentPageIndex! < self.pages.count - 1 {
-            self.navigateToPage(self.currentPageIndex! + 1, animated: true)
+        if self.currentPageIndex < self.pages.count - 1 {
+            self.navigateToPage(self.currentPageIndex + 1, animated: true)
         }
     }
 
@@ -83,7 +95,7 @@ extension BPPageViewController {
     }
     
     fileprivate func navigateToPage(_ index: Int, animated: Bool) {
-        let direction: UIPageViewControllerNavigationDirection = (index > self.currentPageIndex!) ? .forward : .reverse
+        let direction: UIPageViewControllerNavigationDirection = (index > self.currentPageIndex) ? .forward : .reverse
 
         self .setViewControllers([self.pages[index]], direction: direction, animated: animated, completion: nil)
         self.currentPageIndex = index
